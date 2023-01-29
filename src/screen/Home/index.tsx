@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Dimensions } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import {
   Badge,
@@ -19,17 +19,27 @@ import {
   TextCategory,
   TextCopy,
 } from "./styles";
-import banner from "../../assets/banner.png";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { CardProduct } from "../../components/CardProduct";
 import { Products } from "../../components/CardProduct/styles";
+import { useProduct } from "../../contexts/Product";
 
 export const Home = () => {
+  const {
+    getProducts,
+    products,
+    handleAddProduct,
+    handleLoadProduct,
+    selectedsProduct,
+  } = useProduct();
+
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
     name: "",
     image: "",
   });
+  const [banner, setBanner] = useState(require("../../assets/banner.png"));
+  const [title, setTitle] = useState("Coleção");
   const categories = [
     {
       id: 1,
@@ -62,128 +72,11 @@ export const Home = () => {
       image: "https://i.imgur.com/0Z0QY0A.png",
     },
   ];
-  const products = [
-    {
-      id: 1,
-      name: "Whey Protein",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "Creatina",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 3,
-      name: "BCAA",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 4,
-      name: "Termogênico",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 5,
-      name: "Proteína",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 1,
-      name: "Whey Protein",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "Creatina",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 3,
-      name: "BCAA",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 4,
-      name: "Termogênico",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 5,
-      name: "Proteína",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 1,
-      name: "Whey Protein",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "Creatina",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 3,
-      name: "BCAA",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 4,
-      name: "Termogênico",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 5,
-      name: "Proteína",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 1,
-      name: "Whey Protein",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "Creatina",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 3,
-      name: "BCAA",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 4,
-      name: "Termogênico",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-    {
-      id: 5,
-      name: "Proteína",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-      price: 100,
-    },
-  ];
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
     <Container>
       <Content>
@@ -194,7 +87,7 @@ export const Home = () => {
           <MenuIcon>
             <Ionicons name="cart" size={RFValue(24)} />
             <Badge>
-              <TextBadge>1</TextBadge>
+              <TextBadge>{selectedsProduct.length}</TextBadge>
             </Badge>
           </MenuIcon>
         </Header>
@@ -203,15 +96,15 @@ export const Home = () => {
             <ImageBanner source={banner} />
           </ContainerImage>
           <ContainerCopy>
-            <TextCopy>Coleção de Suplementos 🔥 </TextCopy>
+            <TextCopy>{title} 🔥 </TextCopy>
           </ContainerCopy>
           <ContainerCategories>
             {categories.length > 0 &&
-              categories.map((category) => (
+              categories.map((category, index) => (
                 <ButtonCategory
                   isActive={false}
                   onPress={() => setSelectedCategory(category)}
-                  key={category.id}
+                  key={index}
                   activeOpacity={0.7}
                 >
                   <TextCategory isActive={selectedCategory.id === category.id}>
@@ -226,7 +119,7 @@ export const Home = () => {
             <ScrollView
               contentContainerStyle={{
                 alignItems: "center",
-                justifyContent: "flex-start",
+                justifyContent: "space-between",
                 width: "100%",
                 flexDirection: "row",
                 flexWrap: "wrap",
@@ -236,10 +129,10 @@ export const Home = () => {
               }}
             >
               {products.length > 0 &&
-                products.map((product) => (
+                products.map((product, index) => (
                   <ButtonCategory
                     onPress={() => setSelectedCategory(product)}
-                    key={product.id}
+                    key={index}
                     activeOpacity={0.7}
                   >
                     <CardProduct item={product} />
@@ -252,13 +145,3 @@ export const Home = () => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  background: {
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-    width: "100%",
-  },
-});
