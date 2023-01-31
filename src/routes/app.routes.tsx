@@ -4,13 +4,17 @@ import {
   createStackNavigator,
 } from "@react-navigation/stack";
 import theme from "../styles/theme";
-import { FontAwesome5, FontAwesome, Entypo } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Home } from "../screen/Home";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Cart } from "../screen/Cart";
+import { Badge, MenuIcon, TextBadge } from "../screen/Home/styles";
+import { useProduct } from "../contexts/Product";
 
 export const AppRoutes = () => {
   const { Navigator, Screen } = createStackNavigator();
 
+  const { selectedsProduct } = useProduct();
   return (
     <Navigator
       initialRouteName="Home"
@@ -31,24 +35,52 @@ export const AppRoutes = () => {
     >
       <Screen
         name={"Home"}
-        options={{
-          animationEnabled: true,
-          // tabBarIcon: ({ focused }) => {
-          //   return (
-          //     <Entypo
-          //       name="home"
-          //       size={30}
-          //       color={focused ? theme.colors.primary : theme.colors.black}
-          //     />
-          //   );
-          // },
-        }}
+        options={
+          {
+            // tabBarIcon: ({ focused }) => {
+            //   return (
+            //     <Entypo
+            //       name="home"
+            //       size={30}
+            //       color={focused ? theme.colors.primary : theme.colors.black}
+            //     />
+            //   );
+            // },
+          }
+        }
         component={Home}
       />
       <Screen
         name={"Cart"}
         options={{
-          animationEnabled: true,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "transparent",
+            height: 60,
+          },
+          headerTintColor: theme.colors.secondary,
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: theme.colors.secondary,
+          },
+          headerRight: () => (
+            <>
+              <MenuIcon
+                style={{
+                  marginRight: 5,
+                  marginTop: 5,
+                }}
+              >
+                <MaterialIcons name="shopping-bag" size={RFValue(24)} />
+                <Badge>
+                  <TextBadge>{selectedsProduct.length}</TextBadge>
+                </Badge>
+              </MenuIcon>
+            </>
+          ),
+
+          headerTitle: "Carrinho",
 
           // tabBarIcon: ({ focused }) => {
           //   return (
@@ -60,7 +92,7 @@ export const AppRoutes = () => {
           //   );
           // },
         }}
-        component={Home}
+        component={Cart}
       />
     </Navigator>
   );

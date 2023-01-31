@@ -10,13 +10,13 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppProvider>
-        <SafeAreaProvider>
-          <NavigationContainer>
-            <SafeAreaView style={{ flex: 1 }}>
-              <AppRoutes />
-            </SafeAreaView>
-          </NavigationContainer>
-        </SafeAreaProvider>
+        {/* <SafeAreaProvider> */}
+        <NavigationContainer>
+          <SafeAreaView style={{ flex: 1 }}>
+            <AppRoutes />
+          </SafeAreaView>
+        </NavigationContainer>
+        {/* </SafeAreaProvider> */}
       </AppProvider>
     </ThemeProvider>
   );

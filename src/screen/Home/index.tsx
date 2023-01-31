@@ -23,6 +23,8 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { CardProduct } from "../../components/CardProduct";
 import { Products } from "../../components/CardProduct/styles";
 import { useProduct } from "../../contexts/Product";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Home = () => {
   const {
@@ -32,6 +34,8 @@ export const Home = () => {
     handleLoadProduct,
     selectedsProduct,
   } = useProduct();
+
+  const { navigate } = useNavigation<any>();
 
   const [selectedCategory, setSelectedCategory] = useState({
     id: 1,
@@ -84,7 +88,11 @@ export const Home = () => {
           <MenuIcon>
             <Ionicons name="menu" size={RFValue(24)} />
           </MenuIcon>
-          <MenuIcon>
+          <MenuIcon
+            onPress={() => {
+              navigate("Cart");
+            }}
+          >
             <Ionicons name="cart" size={RFValue(24)} />
             <Badge>
               <TextBadge>{selectedsProduct.length}</TextBadge>
