@@ -11,6 +11,8 @@ export const Content = styled.View`
   padding: 0 ${({ theme }) => theme.spacing.large}px;
   margin-top: ${({ theme }) => theme.spacing.xslarge}px;
   flex: 1;
+
+  align-items: center;
 `;
 
 export const Header = styled.View`

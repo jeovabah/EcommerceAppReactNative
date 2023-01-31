@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 import { FlatList, Text, TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { ContainerImage } from "../../components/CardProduct/styles";
@@ -28,18 +29,49 @@ export const Cart = () => {
     handleAddProduct,
     handleLoadProduct,
     selectedsProduct,
+    sumTotalProducts,
   } = useProduct();
 
   return (
     <Container>
       <Content>
+        {selectedsProduct.length === 0 && (
+          <>
+            <Title>Nenhum produto no carrinho</Title>
+          </>
+        )}
         <FlatList
           data={selectedsProduct}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item._id}
           renderItem={({ item, index }) => (
             <RenderOptionItem key={index} item={item} />
           )}
         />
+        {selectedsProduct.length > 0 && (
+          <>
+            <Header>
+              <Title>Total </Title>
+              <Title> {MaskMoneyBr(sumTotalProducts())}</Title>
+            </Header>
+            <TouchableOpacity
+              onPress={() => {
+                handleLoadProduct();
+                navigate("Checkout");
+              }}
+              style={{
+                backgroundColor: theme.colors.primary,
+                borderRadius: theme.borderRadius.large,
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 10,
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              <Title style={{ color: "white" }}>Finalizar compra</Title>
+            </TouchableOpacity>
+          </>
+        )}
       </Content>
     </Container>
   );

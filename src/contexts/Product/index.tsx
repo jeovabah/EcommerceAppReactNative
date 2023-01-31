@@ -18,6 +18,7 @@ interface ContextProps {
   handleRemoveProduct: any;
   handleRemoveQuantity: any;
   handleAddQuantity: any;
+  sumTotalProducts: any;
 }
 
 const ProductContext = createContext({} as ContextProps);
@@ -134,6 +135,14 @@ export const ProductProvider = ({ children }: any) => {
     handleLoadProduct();
   }, []);
 
+  const sumTotalProducts = useCallback(() => {
+    let total = 0;
+    selectedsProduct.map((item) => {
+      total += item.quantity * item.price;
+    });
+    return total;
+  }, [selectedsProduct]);
+
   const value = useMemo(() => {
     return {
       products,
@@ -144,6 +153,7 @@ export const ProductProvider = ({ children }: any) => {
       handleRemoveProduct,
       handleAddQuantity,
       handleRemoveQuantity,
+      sumTotalProducts,
     };
   }, [
     products,
@@ -154,6 +164,7 @@ export const ProductProvider = ({ children }: any) => {
     handleRemoveProduct,
     handleAddQuantity,
     handleRemoveQuantity,
+    sumTotalProducts,
   ]);
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
