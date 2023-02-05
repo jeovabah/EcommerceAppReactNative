@@ -108,6 +108,33 @@ export const ButtonCategory = styled.TouchableOpacity<ICategoryProps>`
     isActive ? theme.colors.primary : theme.colors.background_global};
 
   position: relative;
+
+  shadow-color: #000;
+  shadow-offset: 0px 0px;
+  shadow-opacity: 0.2;
+  shadow-radius: 5px;
+  elevation: 5;
+`;
+
+export const ButtonChoice = styled.TouchableOpacity<ICategoryProps>`
+  background-color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.primary : theme.colors.background_global};
+  border-radius: ${({ theme }) => theme.borderRadius.large}px;
+  margin-right: ${({ theme }) => theme.spacing.large}px;
+  margin-top: ${({ theme }) => theme.spacing.small}px;
+  margin-bottom: ${({ theme }) => theme.spacing.small}px;
+
+  width: 50px;
+  height: 50px;
+
+  shadow-color: #000;
+  shadow-offset: 0px 0px;
+  shadow-opacity: 0.2;
+  shadow-radius: 5px;
+  elevation: 5;
+
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BadgeCategory = styled.View<ICategoryProps>`

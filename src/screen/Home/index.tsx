@@ -1,11 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Image } from "react-native";
 import { useState, useEffect } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import {
   Badge,
   BadgeCategory,
   ButtonCategory,
+  ButtonChoice,
   Container,
   ContainerCategories,
   ContainerCopy,
@@ -109,18 +110,21 @@ export const Home = () => {
           <ContainerCategories>
             {categories.length > 0 &&
               categories.map((category, index) => (
-                <ButtonCategory
+                <ButtonChoice
                   isActive={false}
                   onPress={() => setSelectedCategory(category)}
                   key={index}
                   activeOpacity={0.7}
                 >
-                  <TextCategory isActive={selectedCategory.id === category.id}>
-                    {category?.name}
-                  </TextCategory>
-
-                  {selectedCategory.id === category.id && <BadgeCategory />}
-                </ButtonCategory>
+                  <Image
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: 5,
+                    }}
+                    source={{ uri: category?.image }}
+                  />
+                </ButtonChoice>
               ))}
           </ContainerCategories>
           <ContainerProducts>
