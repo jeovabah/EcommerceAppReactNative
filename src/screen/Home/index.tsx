@@ -139,7 +139,10 @@ export const Home = () => {
               {products.length > 0 &&
                 products.map((product, index) => (
                   <ButtonCategory
-                    onPress={() => setSelectedCategory(product)}
+                    onPress={() => {
+                      setSelectedCategory(product);
+                      navigate("DetailsItem", { item: product });
+                    }}
                     key={index}
                     activeOpacity={0.7}
                   >

@@ -64,6 +64,8 @@ export const ContentItem = styled.View`
   width: ${RFValue(110)}px;
   justify-content: space-around;
   height: ${RFValue(100)}px;
+
+  margin-left: 10px;
 `;
 
 export const Title = styled.Text`

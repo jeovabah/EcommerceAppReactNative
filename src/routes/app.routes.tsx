@@ -10,6 +10,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Cart } from "../screen/Cart";
 import { Badge, MenuIcon, TextBadge } from "../screen/Home/styles";
 import { useProduct } from "../contexts/Product";
+import { DetailsItem } from "../screen/DetailsItem";
 
 export const AppRoutes = () => {
   const { Navigator, Screen } = createStackNavigator();
@@ -33,22 +34,24 @@ export const AppRoutes = () => {
         // },
       }}
     >
+      <Screen name={"Home"} component={Home} />
       <Screen
-        name={"Home"}
-        options={
-          {
-            // tabBarIcon: ({ focused }) => {
-            //   return (
-            //     <Entypo
-            //       name="home"
-            //       size={30}
-            //       color={focused ? theme.colors.primary : theme.colors.black}
-            //     />
-            //   );
-            // },
-          }
-        }
-        component={Home}
+        name={"DetailsItem"}
+        options={{
+          title: "Detalhes do produto",
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "transparent",
+            height: 60,
+          },
+          headerTintColor: theme.colors.secondary,
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: theme.colors.secondary,
+          },
+        }}
+        component={DetailsItem}
       />
       <Screen
         name={"Cart"}
@@ -81,16 +84,6 @@ export const AppRoutes = () => {
           ),
 
           headerTitle: "Carrinho",
-
-          // tabBarIcon: ({ focused }) => {
-          //   return (
-          //     <Entypo
-          //       name="shopping-cart"
-          //       size={30}
-          //       color={focused ? theme.colors.primary : theme.colors.black}
-          //     />
-          //   );
-          // },
         }}
         component={Cart}
       />

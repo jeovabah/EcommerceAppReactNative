@@ -68,7 +68,9 @@ export const Cart = () => {
                 marginBottom: 10,
               }}
             >
-              <Title style={{ color: "white" }}>Finalizar compra</Title>
+              <Title style={{ color: theme.colors.background_global }}>
+                Finalizar compra
+              </Title>
             </TouchableOpacity>
           </>
         )}
@@ -96,7 +98,7 @@ const RenderOptionItem = ({ item }) => {
           <TouchableOpacity
             onPress={() => handleAddQuantity(item)}
             style={{
-              backgroundColor: "white",
+              backgroundColor: theme.colors.white,
               borderRadius: 50,
               alignItems: "center",
               justifyContent: "center",
