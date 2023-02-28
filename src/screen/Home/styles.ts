@@ -58,16 +58,22 @@ export const HeaderGradient = styled(LinearGradient)`
 
 export const ContainerImage = styled.View`
   margin-top: ${({ theme }) => theme.spacing.xslarge}px;
+  border-radius: ${({ theme }) => theme.borderRadius.large}px;
   width: 100%;
   flex: 1;
   max-height: 200px;
-  border: 1px solid green;
-  border-radius: ${({ theme }) => theme.borderRadius.large}px;
+
+  shadow-color: #000;
+  shadow-offset: 0px 0px;
+  shadow-opacity: 0.7;
+  shadow-radius: 10px;
+  elevation: 5;
 `;
 
 export const ImageBanner = styled.Image`
   width: 100%;
   max-height: 200px;
+  border-radius: ${({ theme }) => theme.borderRadius.large}px;
 `;
 
 export const ContainerCopy = styled.View`
