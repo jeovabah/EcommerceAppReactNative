@@ -20,105 +20,33 @@ import {
   TextCategory,
   TextCopy,
 } from "./styles";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
-import { CardProduct } from "../../components/CardProduct";
-import { Products } from "../../components/CardProduct/styles";
-import { useProduct } from "../../contexts/Product";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { HomeV1 } from "./V1";
-import { HomeV2 } from "./V2";
+import { ScrollView } from "react-native-gesture-handler";
+import { CardProduct } from "../../../components/CardProduct";
 
-export const Home = () => {
-  const {
-    getProducts,
-    products,
-    handleAddProduct,
-    handleLoadProduct,
-    selectedsProduct,
-  } = useProduct();
+interface Props {
+  selectedsProduct: any;
+  setSelectedCategory: any;
+  categories: any;
+  products: any;
+  title: string;
+  banner: any;
+}
 
+export const HomeV1 = ({
+  selectedsProduct,
+  setSelectedCategory,
+  categories,
+  products,
+  title,
+  banner,
+}: Props) => {
   const { navigate } = useNavigation<any>();
 
-  const [selectedCategory, setSelectedCategory] = useState({
-    id: 1,
-    name: "",
-    image: "",
-  });
-  const [banner, setBanner] = useState(require("../../assets/banner.png"));
-  const [title, setTitle] = useState("Coleção");
-  const categories = [
-    {
-      id: 1,
-      name: "Wheys",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-    {
-      id: 2,
-      name: "Creatinas",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-    {
-      id: 3,
-      name: "BCAA",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-    {
-      id: 4,
-      name: "Termogênicos",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-    {
-      id: 5,
-      name: "Proteínas",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-    {
-      id: 6,
-      name: "Vitaminas",
-      image: "https://i.imgur.com/0Z0QY0A.png",
-    },
-  ];
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const [VersionLayout, setVersionLayout] = useState("V2");
-
-  const showLayoutVersion = () => {
-    switch (VersionLayout) {
-      case "V1":
-        return (
-          <HomeV1
-            banner={banner}
-            categories={categories}
-            products={products}
-            selectedsProduct={selectedsProduct}
-            setSelectedCategory={setSelectedCategory}
-            title={title}
-          />
-        );
-      case "V2":
-        return (
-          <HomeV2
-            banner={banner}
-            categories={categories}
-            products={products}
-            selectedsProduct={selectedsProduct}
-            setSelectedCategory={setSelectedCategory}
-            title={title}
-          />
-        );
-      default:
-        return <></>;
-    }
-  };
-
   return (
-    <Container>
-      {showLayoutVersion()}
-      {/* <Content>
+    <>
+      <Content>
         <Header>
           <MenuIcon>
             <Ionicons name="menu" size={RFValue(24)} />
@@ -190,7 +118,7 @@ export const Home = () => {
             </ScrollView>
           </ContainerProducts>
         </ScrollView>
-      </Content> */}
-    </Container>
+      </Content>
+    </>
   );
 };

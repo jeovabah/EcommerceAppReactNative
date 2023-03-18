@@ -23,16 +23,12 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-
-  margin-top: ${({ theme }) => theme.spacing.xslarge}px;
+  margin-top: ${({ theme }) => theme.spacing.large}px;
 `;
 
 export const MenuIcon = styled.TouchableOpacity`
   border-radius: 50px;
   padding: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
   position: relative;
 `;
 
@@ -49,6 +45,11 @@ export const Badge = styled.View`
 export const TextBadge = styled.Text`
   color: ${({ theme }) => theme.colors.background_global};
   font-size: ${({ theme }) => theme.fontSizes.small - 2}px;
+  font-weight: bold;
+`;
+export const TextTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.large}px;
   font-weight: bold;
 `;
 
@@ -112,10 +113,6 @@ export const TextCategory = styled.Text<ICategoryProps>`
 `;
 
 export const ButtonCategory = styled.TouchableOpacity<ICategoryProps>`
-  border-bottom-width: 0.5px;
-  border-bottom-color: ${({ theme, isActive }) =>
-    isActive ? theme.colors.primary : theme.colors.background_global};
-
   position: relative;
 
   shadow-color: #000;
@@ -123,6 +120,13 @@ export const ButtonCategory = styled.TouchableOpacity<ICategoryProps>`
   shadow-opacity: 0.2;
   shadow-radius: 5px;
   elevation: 5;
+
+  width: 100%;
+  border: 1px solid red;
+
+  padding: ${({ theme }) => theme.spacing.small}px;
+
+  margin-top: 20px;
 `;
 
 export const ButtonChoice = styled.TouchableOpacity<ICategoryProps>`
@@ -154,5 +158,6 @@ export const BadgeCategory = styled.View<ICategoryProps>`
 `;
 
 export const ContainerProducts = styled.View`
-  margin-top: ${({ theme }) => theme.spacing.xslarge}px;
+  padding: ${({ theme }) => theme.spacing.small}px
+    ${({ theme }) => theme.spacing.large}px;
 `;
