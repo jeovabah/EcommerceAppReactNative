@@ -35,7 +35,7 @@ export const CardProductV2 = ({ item }: Props) => {
       }}
       activeOpacity={0.7}
     >
-      <BadgeAdd onPress={() => handleAddProduct(item)}>
+      <BadgeAdd onPress={() => {}}>
         <Ionicons
           name={"heart-outline"}
           size={RFValue(24)}
@@ -60,6 +60,7 @@ export const CardProductV2 = ({ item }: Props) => {
         {/* @ts-ignore */}
         <TitleML>{item?.ml > 0 ? `${item?.ml}ml` : "300ml"}</TitleML>
         <Ionicons
+          onPress={() => handleAddProduct(item)}
           name={"add-circle-outline"}
           size={RFValue(24)}
           color={theme.colors.primary}

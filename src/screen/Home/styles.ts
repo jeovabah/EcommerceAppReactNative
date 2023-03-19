@@ -7,6 +7,10 @@ interface ICategoryProps {
   isActive?: boolean;
 }
 
+interface MenuProps {
+  noHasBackground?: boolean;
+}
+
 export const Container = styled.View`
   flex: 1;
   position: relative;
@@ -29,10 +33,11 @@ export const Header = styled.View`
   margin-top: ${({ theme }) => theme.spacing.xslarge}px;
 `;
 
-export const MenuIcon = styled.TouchableOpacity`
+export const MenuIcon = styled.TouchableOpacity<MenuProps>`
   border-radius: 50px;
   padding: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme, noHasBackground }) =>
+    !noHasBackground ? theme.colors.white : "transparent"};
   position: relative;
 `;
 

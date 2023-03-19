@@ -12,11 +12,13 @@ import { Badge, MenuIcon, TextBadge } from "../screen/Home/styles";
 import { useProduct } from "../contexts/Product";
 import { DetailsItem } from "../screen/DetailsItem";
 import { Favorites } from "../screen/Favorites";
+import { useNavigation } from "@react-navigation/native";
 
 export const AppRoutes = () => {
   const { Navigator, Screen } = createBottomTabNavigator();
 
   const { selectedsProduct } = useProduct();
+  const { navigate } = useNavigation<any>();
   return (
     <Navigator
       initialRouteName="Home"
@@ -117,7 +119,19 @@ export const AppRoutes = () => {
           ),
 
           tabBarIcon: ({ color }) => (
-            <Ionicons name="md-cart" size={RFValue(24)} color={color} />
+            <>
+              <MenuIcon
+                noHasBackground
+                onPress={() => {
+                  navigate("Cart");
+                }}
+              >
+                <Badge>
+                  <TextBadge>{selectedsProduct.length}</TextBadge>
+                </Badge>
+                <Ionicons name="md-cart" size={RFValue(24)} color={color} />
+              </MenuIcon>
+            </>
           ),
 
           headerTitle: "Carrinho",
