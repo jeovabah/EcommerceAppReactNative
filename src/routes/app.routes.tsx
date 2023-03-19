@@ -94,7 +94,6 @@ export const AppRoutes = () => {
           headerShown: true,
           headerStyle: {
             backgroundColor: "transparent",
-            height: 60,
           },
           headerTintColor: theme.colors.secondary,
           // headerBackTitleVisible: false,
@@ -102,22 +101,6 @@ export const AppRoutes = () => {
             fontWeight: "bold",
             color: theme.colors.secondary,
           },
-          headerRight: () => (
-            <>
-              <MenuIcon
-                style={{
-                  marginRight: 5,
-                  marginTop: 5,
-                }}
-              >
-                <MaterialIcons name="shopping-bag" size={RFValue(24)} />
-                <Badge>
-                  <TextBadge>{selectedsProduct.length}</TextBadge>
-                </Badge>
-              </MenuIcon>
-            </>
-          ),
-
           tabBarIcon: ({ color }) => (
             <>
               <MenuIcon

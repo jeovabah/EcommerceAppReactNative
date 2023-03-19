@@ -115,7 +115,7 @@ export const DetailsItem = ({ route }) => {
             width: 50,
             justifyContent: "center",
             alignItems: "center",
-            borderRadius: 10,
+            borderRadius: theme.borderRadius.large,
           }}
           activeOpacity={0.8}
           onPress={() => {
