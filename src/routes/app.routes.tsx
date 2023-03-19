@@ -65,11 +65,16 @@ export const AppRoutes = () => {
         component={DetailsItem}
         // options={{ tabBarShowLabel: false, tabBarStyle: { display: "none" } }}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="md-heart" size={RFValue(24)} color={color} />
-          ),
+          tabBarStyle: { display: "none" },
+          tabBarIconStyle: { display: "none" },
           tabBarShowLabel: false,
         }}
+        listeners={({ navigation, route }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            return;
+          },
+        })}
       />
       <Screen
         name={"Cart"}
