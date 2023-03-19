@@ -12,9 +12,9 @@ export default function App() {
       <AppProvider>
         {/* <SafeAreaProvider> */}
         <NavigationContainer>
-          <SafeAreaView style={{ flex: 1 }}>
+          <View style={{ flex: 1 }}>
             <AppRoutes />
-          </SafeAreaView>
+          </View>
         </NavigationContainer>
         {/* </SafeAreaProvider> */}
       </AppProvider>

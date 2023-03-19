@@ -49,7 +49,11 @@ export const HomeV2 = ({
   return (
     <>
       <Content>
-        <ScrollView>
+        <ScrollView
+          style={{
+            marginBottom: RFValue(50),
+          }}
+        >
           <Header>
             <MenuIcon>
               <Ionicons name="menu" size={RFValue(20)} />

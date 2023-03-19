@@ -11,6 +11,7 @@ import { Cart } from "../screen/Cart";
 import { Badge, MenuIcon, TextBadge } from "../screen/Home/styles";
 import { useProduct } from "../contexts/Product";
 import { DetailsItem } from "../screen/DetailsItem";
+import { Favorites } from "../screen/Favorites";
 
 export const AppRoutes = () => {
   const { Navigator, Screen } = createBottomTabNavigator();
@@ -65,16 +66,25 @@ export const AppRoutes = () => {
         component={DetailsItem}
         // options={{ tabBarShowLabel: false, tabBarStyle: { display: "none" } }}
         options={{
+          tabBarItemStyle: { display: "none" },
           tabBarStyle: { display: "none" },
-          tabBarIconStyle: { display: "none" },
-          tabBarShowLabel: false,
         }}
-        listeners={({ navigation, route }) => ({
+        listeners={() => ({
           tabPress: (e) => {
             e.preventDefault();
             return;
           },
         })}
+      />
+      <Screen
+        name={"Favorites"}
+        component={Favorites}
+        // options={{ tabBarShowLabel: false, tabBarStyle: { display: "none" } }}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="heart" size={RFValue(24)} color={color} />
+          ),
+        }}
       />
       <Screen
         name={"Cart"}

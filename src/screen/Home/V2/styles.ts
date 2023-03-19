@@ -23,7 +23,7 @@ export const Header = styled.View`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;
-  margin-top: ${({ theme }) => theme.spacing.large}px;
+  margin-top: ${({ theme }) => theme.spacing.xsslarge}px;
 `;
 
 export const MenuIcon = styled.TouchableOpacity`
